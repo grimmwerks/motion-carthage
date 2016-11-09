@@ -19,15 +19,19 @@ end
 
 namespace :carthage do
   desc "Thin and embed Carthage frameworks"
-  task :device do
-    unless App.config.carts.nil?
-      # carthage copy-frameworks
-      tmp = App.config.archs["iPhoneOS"].join(" ")
-      NSLog("carthage copy-frameworks  #{tmp}")
-      App.info "Thin", App.config.carts.join(', ')
-      copy_frameworks(App.config.archs["iPhoneOS"].join(" "))
-      embed_frameworks(App.config.archs["iPhoneOS"].join(" "))
-    end
+  # task :device do
+  #   unless App.config.carts.nil?
+  #     # carthage copy-frameworks
+  #     tmp = App.config.archs["iPhoneOS"].join(" ")
+  #     NSLog("carthage copy-frameworks  #{tmp}")
+  #     App.info "Thin", App.config.carts.join(', ')
+  #     copy_frameworks(App.config.archs["iPhoneOS"].join(" "))
+  #     embed_frameworks(App.config.archs["iPhoneOS"].join(" "))
+  #   end
+  # end
+  task :simulator do
+    # embed universal binary
+    App.config.embedded_frameworks += App.config.carts.map { |framework| "Carthage/Build/iOS/#{framework}.framework" } unless App.config.carts.nil?
   end
 
   desc "Embed Carthage frameworks"
