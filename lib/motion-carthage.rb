@@ -31,6 +31,7 @@ namespace :carthage do
   # end
   task :device do
     # embed universal binary
+    puts "Let's inspect the config.archs: #{App.config.archs.inspect}"
     App.config.embedded_frameworks += App.config.carts.map { |framework| "Carthage/Build/iOS/#{framework}.framework" } unless App.config.carts.nil?
   end
 
