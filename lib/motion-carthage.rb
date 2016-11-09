@@ -29,7 +29,7 @@ namespace :carthage do
   #     embed_frameworks(App.config.archs["iPhoneOS"].join(" "))
   #   end
   # end
-  task :simulator do
+  task :device do
     # embed universal binary
     App.config.embedded_frameworks += App.config.carts.map { |framework| "Carthage/Build/iOS/#{framework}.framework" } unless App.config.carts.nil?
   end
