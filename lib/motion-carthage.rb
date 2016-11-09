@@ -39,6 +39,11 @@ namespace :carthage do
     # embed universal binary
     App.config.embedded_frameworks += App.config.carts.map { |framework| "Carthage/Build/Mac/#{framework}.framework" } unless App.config.carts.nil?
   end
+
+  task :device do
+    # embed universal binary
+    App.config.embedded_frameworks += App.config.carts.map { |framework| "Carthage/Build/Mac/#{framework}.framework" } unless App.config.carts.nil?
+  end
 end
 
 def copy_frameworks(archs)
